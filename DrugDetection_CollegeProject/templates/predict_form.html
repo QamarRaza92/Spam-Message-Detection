@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drug Detection</title>
+    <style>
+        /* Background and General Styles */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Courier New', Courier, monospace;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            color: #fff;
+            text-align: center;
+        }
+
+        /* Title Animation */
+        h1 {
+            font-size: 3em;
+            margin-top: 20px;
+            animation: glitch 1.5s infinite;
+        }
+
+        @keyframes glitch {
+            0% {
+                text-shadow: 3px 3px 0 red, -3px -3px 0 cyan;
+            }
+            50% {
+                text-shadow: -3px 3px 0 cyan, 3px -3px 0 red;
+            }
+            100% {
+                text-shadow: 3px 3px 0 red, -3px -3px 0 cyan;
+            }
+        }
+
+        /* Form Styles */
+        form {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            display: inline-block;
+            margin-top: 20px;
+            box-shadow: 0px 0px 20px rgba(0, 255, 255, 0.5);
+        }
+
+        /* Input and Textarea Styles */
+        input, textarea {
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid #00ffff;
+            border-radius: 5px;
+            padding: 10px;
+            width: 90%;
+            color: #00ffff;
+            font-size: 1em;
+            margin-top: 10px;
+        }
+
+        /* New Submit Button Style (Simple and Colorful) */
+        input[type="submit"] {
+            background: linear-gradient(45deg, #007bff, #00ffcc); /* Subtle gradient */
+            border: none;
+            padding: 10px 20px;
+            font-size: 1em;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        input[type="submit"]:hover {
+            background: linear-gradient(45deg, #00ffcc, #007bff); /* Reversed gradient on hover */
+            transform: scale(1.05); /* Slight scale on hover */
+        }
+
+        /* Animated Background Objects */
+        .animated-object {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            animation: move 15s infinite;
+        }
+
+        /* Object Animation */
+        @keyframes move {
+            0% {
+                transform: translate(0px, 0px);
+            }
+            100% {
+                transform: translate(100vw, 100vh);
+            }
+        }
+
+        /* Prediction Result */
+        h2 {
+            margin-top: 20px;
+            font-size: 1.8em;
+            color: #00ff00;
+        }
+
+        /* Non-clickable button styles */
+        .non-clickable {
+            position: absolute;
+            left: 10px; /* Adjust as needed */
+            top: 50px; /* Adjust as needed */
+            padding: 10px 20px;
+            background-color: #444;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+            pointer-events: none;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Drug-Related Post Detection</h1>
+
+    <!-- Floating animated objects for background effect -->
+    <div class="animated-object" style="top: 10%; left: 20%;"></div>
+    <div class="animated-object" style="top: 30%; left: 80%;"></div>
+    <div class="animated-object" style="top: 50%; left: 50%;"></div>
+    <div class="animated-object" style="top: 70%; left: 30%;"></div>
+
+    <form action="/predict" method="POST">
+        <label for="post_text">Post Text:</label><br>
+        <textarea id="post_text" name="post_text" rows="4" cols="50" required></textarea><br><br>
+
+        <label for="ip_address">IP Address:</label><br>
+        <input type="text" id="ip_address" name="ip_address" required><br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    {% if prediction %}
+    <h2>Prediction: {{ prediction }}</h2>
+    {% endif %}
+
+    <!-- Non-clickable button -->
+    <div class="non-clickable">Click here to access location and other details</div>
+
+</body>
+</html>

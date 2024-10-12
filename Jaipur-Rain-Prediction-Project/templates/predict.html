@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gaming Style Form</title>
+    <style>
+        body {
+            font-family: 'Press Start 2P', cursive;
+            background-color: #1e1e2e;
+            color: #ffffff;
+            margin: 0;
+            padding: 20px;
+        }
+        form {
+            background-color: #282846;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            animation: fadeIn 2s ease-in-out;
+        }
+        div {
+            margin-bottom: 15px;
+        }
+        label {
+            font-size: 1.2em;
+            color: #ff79c6;
+        }
+        input, select {
+            font-size: 1.2em;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            background-color: #ff5555;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        input[type="submit"]:hover {
+            background-color: #ff79c6;
+        }
+        h1, h2, h3 {
+            text-align: center;
+        }
+        h1 {
+            font-size: 2.5em;
+            color: #bd93f9;
+            animation: glow 1s ease-in-out infinite alternate;
+        }
+        h2 {
+            font-size: 2em;
+            color: #50fa7b;
+        }
+        h3 {
+            font-size: 1.5em;
+            color: #8be9fd;
+        }
+        a {
+            color: #ffb86c;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        a:hover {
+            color: #ff79c6;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes glow {
+            from { text-shadow: 0 0 10px #bd93f9, 0 0 20px #bd93f9, 0 0 30px #bd93f9, 0 0 40px #ff79c6, 0 0 70px #ff79c6, 0 0 80px #ff79c6, 0 0 100px #ff79c6, 0 0 150px #ff79c6; }
+            to { text-shadow: 0 0 20px #bd93f9, 0 0 30px #bd93f9, 0 0 40px #ff79c6, 0 0 50px #ff79c6, 0 0 80px #ff79c6, 0 0 90px #ff79c6, 0 0 100px #ff79c6, 0 0 150px #ff79c6; }
+        }
+    </style>
+</head>
+<body>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <div>{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+        <br>
+        <div>
+            {{ form.Pclass.label }}
+            {{ form.Pclass }}
+            {% if form.Pclass.errors %}
+                {% for error in form.Pclass.errors %}
+                    {{ error }}
+                {% endfor %}
+            {% endif %}
+        </div>
+        <br>
+
+        <div>
+            {{ form.Sex.label }}
+            {{ form.Sex }}
+            {% if form.Sex.errors %}
+                {% for error in form.Sex.errors %}
+                    {{ error }}
+                {% endfor %}
+            {% endif %}
+        </div>
+        <br>
+
+        <div>
+            {{ form.Age.label }}
+            {{ form.Age }}
+            {% if form.Age.errors %}
+                {% for error in form.Age.errors %}
+                    {{ error }}
+                {% endfor %}
+            {% endif %}
+        </div>
+        <br>
+
+        <div>
+            {{ form.Fare.label }}
+            {{ form.Fare }}
+            {% if form.Fare.errors %}
+                {% for error in form.Fare.errors %}
+                    {{ error }}
+                {% endfor %}
+            {% endif %}
+        </div>
+        <br>
+
+        <div>
+            {{ form.Embarked.label }}
+            {{ form.Embarked }}
+            {% if form.Embarked.errors %}
+                {% for error in form.Embarked.errors %}
+                    {{ error }}
+                {% endfor %}
+            {% endif %}
+        </div>
+        <br>
+
+        <div>
+            {{ form.Family_Members.label }}
+            {{ form.Family_Members }}
+            {% if form.Family_Members.errors %}
+                {% for error in form.Family_Members.errors %}
+                    {{ error }}
+                {% endfor %}
+            {% endif %}
+        </div>
+        <br>
+
+        <div> {{ form.Submit() }}</div>
+    </form>
+
+    <div>
+        <h1><i style="color:rgb(43, 50, 129)"> {{ output }}</i></h1>
+    </div>
+
+    <div>
+        <h2 style="color:rgba(40, 170, 141, 0.899)">Redirect to home page?</h2>
+        <a href="{{ url_for('home') }}" target="_parent">
+            <h3><i>Home</i></h3>
+        </a>
+    </div>
+</body>
+</html>
